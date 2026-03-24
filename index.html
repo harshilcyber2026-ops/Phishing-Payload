@@ -167,13 +167,6 @@ code,.mono{font-family:var(--font-mono);background:rgba(0,232,200,.06);border:1p
   <a class="nav-brand" href="#">
     <span class="bracket">[</span><span class="brand-flag">⚑</span>FLAG<span style="color:var(--accent)">VAULT</span><span class="bracket">]</span>
   </a>
-  <ul class="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#" class="active">Challenges</a></li>
-    <li><a href="#">Scoreboard</a></li>
-    <li><a href="#">Tools</a></li>
-    <li><a href="#">Rules</a></li>
-  </ul>
   <div class="nav-status"><span class="status-dot"></span><span>CTF LIVE</span></div>
 </nav>
 
@@ -332,72 +325,7 @@ Creator : ACME HR Suite v3.1</span></div>
         </div>
         <span class="dl-arr">→</span>
       </a>
-
-      <!-- Hints -->
-      <div class="sec-divider"><h3>Hints</h3></div>
-      <div class="hints-container">
-        <div class="hint-item" id="h1">
-          <button class="hint-toggle" onclick="toggleHint('h1')">
-            <span class="hint-num">HINT 01</span>
-            I opened the PDF and it looks normal — where is the flag?
-            <span class="hint-cost">−50 pts</span>
-          </button>
-          <div class="hint-content">
-            The flag is NOT on the visible PDF page. It's stored as a <strong>hidden embedded file attachment</strong> inside the PDF's internal structure (the EmbeddedFiles tree). PDF viewers won't show it — use a forensic tool.<br><br>
-            Try: <code>pdfdetach -list document.pdf</code>
-          </div>
-        </div>
-        <div class="hint-item" id="h2">
-          <button class="hint-toggle" onclick="toggleHint('h2')">
-            <span class="hint-num">HINT 02</span>
-            What tool do I use? I don't have pdfdetach installed.
-            <span class="hint-cost">−50 pts</span>
-          </button>
-          <div class="hint-content">
-            <strong>Install pdfdetach:</strong> <code>sudo apt install poppler-utils</code><br><br>
-            <strong>Or use Python (pip install pypdf):</strong><br>
-            <code>from pypdf import PdfReader; r = PdfReader("document.pdf"); print(r.attachments)</code><br><br>
-            <strong>Or no tools at all:</strong> <code>strings document.pdf | grep FlagVault</code>
-          </div>
-        </div>
-        <div class="hint-item" id="h3">
-          <button class="hint-toggle" onclick="toggleHint('h3')">
-            <span class="hint-num">HINT 03</span>
-            I extracted the file — what's the filename and what's in it?
-            <span class="hint-cost">−25 pts</span>
-          </button>
-          <div class="hint-content">
-            The embedded file is named <code>secret_data.txt</code>. It's a plaintext "employee record" document. The flag appears on the line labelled <em>Internal Access Code:</em>
-          </div>
-        </div>
-      </div>
-
-      <!-- Flag format -->
-      <div class="flag-format">
-        <span>⚑</span>
-        <span>Flag format: <strong>FlagVault{your_flag_here}</strong></span>
-      </div>
-
-      <!-- Submit -->
-      <div class="submit-section">
-        <div class="submit-title">Submit Your Flag</div>
-        <p class="submit-sub">Extract the embedded file from document.pdf and copy the flag from inside it.</p>
-        <div class="flag-input-wrap">
-          <span class="prefix">FlagVault{</span>
-          <input class="form-control" id="flagInput" type="text" placeholder="your_flag_here}" autocomplete="off" spellcheck="false"/>
-        </div>
-        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
-          <button class="btn btn-primary" onclick="submitFlag()">⚑ &nbsp;Submit Flag</button>
-          <button class="btn btn-danger"  onclick="clearFlag()">✕ &nbsp;Clear</button>
-        </div>
-        <div class="submit-result" id="flagResult"></div>
-        <div class="solved-banner" id="solvedBanner">
-          <span class="sb-icon">🏆</span>
-          <div>
-            <div style="font-weight:bold;margin-bottom:.2rem">Challenge Solved!</div>
-            <div style="font-size:.72rem;color:var(--text-dim)">You extracted the hidden embedded file from the phishing PDF. Solid forensics work.</div>
-          </div>
-          <span class="sb-pts">+350 pts</span>
+        
         </div>
       </div>
 
@@ -414,11 +342,6 @@ Creator : ACME HR Suite v3.1</span></div>
         <div class="meta-row"><span class="meta-key">Author</span><span class="meta-val ok">FlagVault</span></div>
         <div class="meta-row"><span class="meta-key">File</span><span class="meta-val">document.pdf</span></div>
         <div class="meta-row"><span class="meta-key">Technique</span><span class="meta-val danger">PDF Embed</span></div>
-        <div class="meta-row"><span class="meta-key">Solves</span><span class="meta-val ok" id="solveCount">47</span></div>
-        <div class="solve-bar-wrap">
-          <div class="solve-bar-label"><span>Solve rate</span><span id="solveRate">47 / 150</span></div>
-          <div class="solve-bar"><div class="solve-bar-fill" id="solveFill"></div></div>
-        </div>
       </div>
 
       <div class="side-card">
